@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# color
+color_red='\e[31m'
+color_green='\e[32m'
+color_blue='\e[34m'
+color_clear='\e[0m'
+
+cred() {
+	echo -ne $color_red$1$color_clear
+}
+cgreen() {
+	echo -ne $color_green$1$color_clear
+}
+cblue() {
+	echo -ne $color_blue$1$color_clear
+}

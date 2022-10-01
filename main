@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# load lib
+source ./lib/lib_color
+source ./lib/lib_menu
+
+echo
+echo $(cblue "START APPLICATION")
+
+export MENU_STR=(
+    "list file in current dir"        #1
+    "print current working directory" #2
+    "run custom command"              #3
+)
+export MENU_CMD=(
+    "ls"               #1
+    "pwd"              #2
+    "./command/custom" #3
+)
+menu

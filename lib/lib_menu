@@ -1,0 +1,39 @@
+#!/bin/bash
+
+menu() {
+	M_START="menu:"
+
+	M_FINISH="
+$(cgreen '0)') exit
+$(cblue 'chose option: ')"
+
+	M_ITEMS=""
+
+	MENU_LENGTH=${#MENU_STR[@]}
+
+	for ((i = 0; i < ${MENU_LENGTH}; i++)); do
+		M_NUM=$((i + 1))
+		M_ITEMS="$M_ITEMS
+$(cgreen $M_NUM\)) ${MENU_STR[$i]}"
+	done
+
+	echo
+	echo -ne "${M_START}${M_ITEMS}${M_FINISH}"
+
+	read input
+	echo
+	if [ "${input}" = "0" ]; then
+		exit 0
+	fi
+
+	M_NUM=$(($input - 1))
+
+	if [ ! -z "${MENU_CMD[$M_NUM]}" ]; then
+		${MENU_CMD[$M_NUM]} && menu
+	else
+		echo -e $(cred "unknown option: ${input}")
+	fi
+
+	# repeat menu echo
+	menu
+}
